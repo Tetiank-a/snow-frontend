@@ -20,19 +20,22 @@ class NewUserData {
 }
 
 function SignInForm() {
+  let text = "";
   const navigate = useNavigate();
   const [input, setValues] = useState(new Input());
   const [errors, setErrors] = useState(new Error());
+  
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
     if (validate()) {
       const data: Input = input as Input;
-
       const result = await signIn(data);
-      if (result.error) {
-        setErrors({message: result.error });
+      
+      console.log(result.response?.data);
+      if (result.response?.status != 200) {
+        setErrors({ message: "Incorrect login or password" });
       } else {
         navigate("/");
       }
@@ -43,7 +46,7 @@ function SignInForm() {
 
   const validate = () => {
     let isValid = true;
-    
+
     return isValid;
   };
 
@@ -52,8 +55,7 @@ function SignInForm() {
       <div className="text-danger">
         <h6>{errors.message}</h6>
       </div>
-     
-      
+
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control
@@ -67,9 +69,8 @@ function SignInForm() {
           type="email"
           placeholder="Enter email"
         />
-        
       </Form.Group>
-     
+
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
         <Form.Control
@@ -84,7 +85,7 @@ function SignInForm() {
           placeholder="Enter password"
         />
       </Form.Group>
-      
+
       <Button variant="primary" type="submit">
         Submit
       </Button>

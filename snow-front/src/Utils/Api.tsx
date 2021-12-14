@@ -1,6 +1,6 @@
 import { Product, Unit, User, Role } from "../types";
 import { del, get, post, put } from "./AxiosWrapper";
-import { AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 import { rejects } from "assert";
 
 export {};
@@ -27,37 +27,8 @@ async function getObject<T>(url: string, params?: any): Promise<T> {
 }
 
 async function createNewObject<T>(url: string, data: T): Promise<PostResponse> {
-    alert(data);
-  fetch(url, {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => console.log(data))
-    .catch((error) => {
-      const postResponse: PostResponse = { response: void(1), error: error };
-      return postResponse;
-    });
-    const postResponse: PostResponse = { response: void(1), error: ""};
-    return postResponse;
-}
-
-async function UpdateObject<T>(url: string, data: T): Promise<PostResponse> {
   let error = "";
-  const response = await put(url, data).catch(function (err) {
-    handleError(err);
-    error = err.message;
-  });
-  const postResponse: PostResponse = { response: response, error: error };
-  return postResponse;
-}
-
-async function deleteObject(url: string, params?: any): Promise<PostResponse> {
-  let error = "";
-  const response = await del(url, params).catch(function (err) {
+  const response = await post(url, data).catch(function (err) {
     handleError(err);
     error = err.message;
   });
@@ -91,9 +62,9 @@ function handleError(error: any) {
 }
 
 export async function signUp<T>(data: T): Promise<PostResponse> {
-  return await createNewObject("https://snowboard-school.herokuapp.com/api/users", data);
+  return await createNewObject("/users", data);
 }
 
 export async function signIn<T>(data: T): Promise<PostResponse> {
-    return await createNewObject("https://snowboard-school.herokuapp.com/api/login", data);
-  }
+  return await createNewObject("/login", data);
+}
