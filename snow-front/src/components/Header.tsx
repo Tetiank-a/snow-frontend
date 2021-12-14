@@ -2,9 +2,10 @@ import logo from '../img/icon.png'
 import '../App.css';
 import { NavLink } from 'react-router-dom';
 import { Container, Nav, Navbar } from 'react-bootstrap';
+import { isAuthorized } from '../Utils/Common';
 
 function Header() {
-    const isLoggedIn: boolean = false
+    const isLoggedIn: boolean = isAuthorized()
     return (
         <div className="header">
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
