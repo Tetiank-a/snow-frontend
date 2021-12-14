@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { signIn } from "../Utils/Api";
+import { setUserSession } from "../Utils/Common";
 
 class Input {
   email: string = "";
@@ -24,7 +25,6 @@ function SignInForm() {
   const navigate = useNavigate();
   const [input, setValues] = useState(new Input());
   const [errors, setErrors] = useState(new Error());
-  
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
@@ -32,12 +32,18 @@ function SignInForm() {
     if (validate()) {
       const data: Input = input as Input;
       const result = await signIn(data);
-      
+
       console.log(result.response?.data);
       if (result.response?.status != 200) {
         setErrors({ message: "Incorrect login or password" });
       } else {
-        navigate("/");
+        const token = result.response?.data['token'] ?? "";
+        const user = result.response?.data['_id'] ?? "";
+        setUserSession(token, user);
+
+        if (user && token) {
+          window.location.href = "/";
+        }
       }
 
       setValues(new Input());
