@@ -8,7 +8,7 @@ function Header() {
     const isLoggedIn: boolean = isAuthorized()
     return (
         <div className="header">
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Navbar collapseOnSelect expand="lg" variant="light">
             <Container>
             <img
                 src={logo}

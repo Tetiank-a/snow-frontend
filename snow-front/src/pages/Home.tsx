@@ -1,8 +1,10 @@
 import '../App.css';
+import companyLogo from '../img/mountains.png';
 
 const Home = () => (
     <div className='home'>
-      <h1>Home page</h1>
+      <h1>Snow school</h1>
+      <br></br>
     </div>
 );
 

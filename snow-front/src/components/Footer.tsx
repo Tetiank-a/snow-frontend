@@ -3,7 +3,7 @@ import '../App.css';
 
 const Footer = () => (
   <div className="footer">
-    <div className="text-info">Copyright © 2021 TripleS - Smart Storage System</div>
+    <div className="text-info">Copyright © 2021 Snow School</div>
   </div>
 );
 

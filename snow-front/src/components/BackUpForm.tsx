@@ -48,10 +48,8 @@ function getLink(list: string): string {
 
 function NoElements(props: {text: string}) {
     return (
-        <div className="mh-100">
-            <a download='list.txt' href={getLink(props.text)}>download</a>
-            <pre>{props.text}</pre>
-            
+        <div className="mh-10">
+            <a download='list.txt' href={getLink(props.text)}>create backup</a>
         </div>
     );
 }

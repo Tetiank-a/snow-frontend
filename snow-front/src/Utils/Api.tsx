@@ -1,4 +1,4 @@
-import { Unit, User, Level, BackUp } from "../types";
+import { Unit, User, Level, BackUp, Task } from "../types";
 import { del, get, post, put } from "./AxiosWrapper";
 import axios, { AxiosResponse } from "axios";
 import { rejects } from "assert";
@@ -116,4 +116,8 @@ export async function getLevel(id: String) {
 
 export async function getLevels() {
   return await getObjectList<Level>('/levels');
+}
+
+export async function getTasks() {
+  return await getObjectList<Task>('/tasks');
 }

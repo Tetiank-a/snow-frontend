@@ -23,3 +23,13 @@ export interface Unit {
     email: string;
     level: Level;
   }
+
+  export interface Task {
+    _id: string;
+    name: string;
+    link: string;
+    level: Level;
+    record: string;
+    user: string;
+    text: string;
+  }
