@@ -26,7 +26,7 @@ function Header() {
                                 <NavLink to="/users">Users</NavLink>
                                 <NavLink to="/tasks">Tasks</NavLink>
                                 <NavLink to="/sessions">Sessions</NavLink>
-                                <NavLink to="/backup">Backup</NavLink>
+                                <NavLink to="/backup">Settings</NavLink>
                             </div>
                         )}
                     </Nav>

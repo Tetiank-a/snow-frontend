@@ -3,9 +3,9 @@ import React from 'react';
 import config from '../config'
 import { Card, Col, Row } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import { PencilFill } from 'react-bootstrap-icons';
+import { PencilFill, TrashFill } from 'react-bootstrap-icons';
 import { User, Level, Task } from '../types';
-import { deleteUser, getUsers, getLevel, getTasks } from '../Utils/Api';
+import { deleteUser, getUsers, getLevel, getTasks, deleteTask } from '../Utils/Api';
 
 class TasksForm extends React.Component<{}, {tasks: Task[]}> {
     constructor(props: any) {
@@ -13,6 +13,7 @@ class TasksForm extends React.Component<{}, {tasks: Task[]}> {
         this.state = {
             tasks: new Array<Task>()
         }
+        this.onClickRemove = this.onClickRemove.bind(this);
     }
   
     async componentDidMount() {
@@ -20,26 +21,34 @@ class TasksForm extends React.Component<{}, {tasks: Task[]}> {
         this.setState({tasks: tasks});
     }
 
-    
+    async onClickRemove(taskId: string) {
+        await deleteTask(taskId);
+        await this.componentDidMount();
+    }
 
     render() {
       const tasks = this.state.tasks;
 
       const taskList = tasks.map(p => (
         <Col>
-            <Card id={p._id} className="user-area">
+            <Card id={p._id} className="task-area">
             <Card.Body>
                 <Card.Title>
                     <Row xs="auto" className="justify-content-between">
                         <Col>
+                        <Link to={`info/${p._id}`} style={{ textDecoration: 'none' }}>
                             {p.name}
+                            </Link>
                         </Col>
                         <Col>
                             <Row>
                                 <Col>
-                                    <Link to={`edit/${p._id}`}>
+                                <Link to={`edit/${p._id}`}>
                                         <PencilFill />
                                     </Link>
+                                    <Col>
+                                    <TrashFill color="red" onClick={() => {this.onClickRemove(p._id)}} />
+                                    </Col>
                                 </Col>
                             </Row>
                         </Col>

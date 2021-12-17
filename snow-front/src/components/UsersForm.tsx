@@ -3,7 +3,7 @@ import React from 'react';
 import config from '../config'
 import { Card, Col, Row } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import { PencilFill } from 'react-bootstrap-icons';
+import { PencilFill, TrashFill } from 'react-bootstrap-icons';
 import { User, Level } from '../types';
 import { deleteUser, getUsers, getLevel } from '../Utils/Api';
 
@@ -44,6 +44,9 @@ class UsersForm extends React.Component<{}, {users: User[]}> {
                                     <Link to={`edit/${p._id}`}>
                                         <PencilFill />
                                     </Link>
+                                    <Col>
+                                    <TrashFill color="red" onClick={() => {this.onClickRemove(p._id)}} />
+                                    </Col>
                                 </Col>
                             </Row>
                         </Col>
@@ -59,11 +62,10 @@ class UsersForm extends React.Component<{}, {users: User[]}> {
                     </Row>
                     <Row xs="auto" className="justify-content-between">
                         <Col>
-                        <Link to={`levels/${p.level}`} style={{ textDecoration: 'none' }}>
+                        
                                 <div className="p-2 m-1 border rounded">
-                                    Roles: {p.level.name}
+                                    Level: {p.level.name}
                                 </div>
-                            </Link>
                         </Col>
                     </Row>
                 </Card.Text>

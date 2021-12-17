@@ -26,8 +26,8 @@ function getLevelName(id: string, a: Array<Level>) : string {
     return "";
 }
 
-function EditProducForm(props: {userId: string}) {
-  const userId = props.userId
+function EditUserForm(props: {userId: string}) {
+  const userId = props.userId;
   const navigate = useNavigate();
   const [input, setValues] = useState(new Input())
   const [error, setError] = useState('')
@@ -119,4 +119,4 @@ function EditProducForm(props: {userId: string}) {
   );
 }
   
-export default EditProducForm;
+export default EditUserForm;

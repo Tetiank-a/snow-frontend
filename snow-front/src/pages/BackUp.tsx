@@ -3,7 +3,7 @@ import BackUpForm from '../components/BackUpForm'
 
 const BackUp = () => (
     <div className='backup'>
-      <h1>Back Up</h1>
+      <h1>Settigs</h1>
       <BackUpForm />
     </div>
 );

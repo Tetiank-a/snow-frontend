@@ -1,4 +1,4 @@
-import { Unit, User, Level, BackUp, Task } from "../types";
+import { Unit, User, Level, BackUp, Task, TaskInf } from "../types";
 import { del, get, post, put } from "./AxiosWrapper";
 import axios, { AxiosResponse } from "axios";
 import { rejects } from "assert";
@@ -107,7 +107,7 @@ export async function getUser(id: String) {
 }
 
 export async function deleteUser(id: string): Promise<PostResponse> {
-  return await deleteObject('/users', {id: id})
+  return await deleteObject('/users/' + id)
 }
 
 export async function getLevel(id: String) {
@@ -120,4 +120,20 @@ export async function getLevels() {
 
 export async function getTasks() {
   return await getObjectList<Task>('/tasks');
+}
+
+export async function updateTask<T>(data: T, id: string): Promise<PostResponse> {
+  return await UpdateObject('/tasks/' + id, data)
+}
+
+export async function getTask(id: String) {
+  return await getObject<Task>('/tasks/' + id);
+}
+
+export async function getTaskInfo(id: String) {
+  return await getObject<TaskInf>('/tasks/info/' + id);
+}
+
+export async function deleteTask(id: string): Promise<PostResponse> {
+  return await deleteObject('/tasks/' + id)
 }

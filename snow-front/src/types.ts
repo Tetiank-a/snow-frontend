@@ -29,7 +29,14 @@ export interface Unit {
     name: string;
     link: string;
     level: Level;
-    record: string;
-    user: string;
+    text: string;
+  }
+
+  export interface TaskInf {
+    _id: string;
+    name: string;
+    link: string;
+    level: Level;
+    username: string;
     text: string;
   }

@@ -10,6 +10,8 @@ import Users from './pages/Users';
 import EditUser from './pages/EditUser';
 import BackUp from './pages/BackUp';
 import Tasks from './pages/Tasks';
+import EditTask from './pages/EditTask';
+import TaskInfo from './pages/TaskInfo';
 import { BadRequest, Unauthorized, AccessDenied, PageNotFound } from './pages/Error';
 
 const App = () => (
@@ -31,6 +33,8 @@ const Main = () => (
       <Route path='/users' element={<Users />}/>
       <Route path='/tasks' element={<Tasks />}/>
       <Route path='/users/edit/:id' element={<EditUser/>}/>
+      <Route path='/tasks/edit/:id' element={<EditTask/>}/>
+      <Route path='/tasks/info/:id' element={<TaskInfo/>}/>
       <Route path='/403' element={<AccessDenied />} />
       <Route path='/401' element={<Unauthorized />} />
       <Route path='/400' element={<BadRequest />} />
