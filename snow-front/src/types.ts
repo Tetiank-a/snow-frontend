@@ -3,23 +3,23 @@ export interface Unit {
     name: string
   }
   
-  export interface Product {
-    id: string;
-    name: string;
-    description: string;
-    shelfLife: string;
-    unit: Unit;
+  export interface BackUp {
+    sessions: string;
+    levels: string;
+    advice: string;
+    records: string;
+    tasks: string;
+    users: string;
   }
   
-  export interface Role {
-    id: string;
+  export interface Level {
+    _id: string;
     name: string;
   }
   
   export interface User {
-    id: string;
-    name: string;
-    surName: string;
-    nickName: string;
-    roles: Role[];
+    _id: string;
+    username: string;
+    email: string;
+    level: Level;
   }

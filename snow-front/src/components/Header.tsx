@@ -24,7 +24,9 @@ function Header() {
                         {isLoggedIn && (
                             <div>
                                 <NavLink to="/users">Users</NavLink>
-                                <NavLink to="/products">Products</NavLink>
+                                <NavLink to="/tasks">Tasks</NavLink>
+                                <NavLink to="/sessions">Sessions</NavLink>
+                                <NavLink to="/backup">Backup</NavLink>
                             </div>
                         )}
                     </Nav>

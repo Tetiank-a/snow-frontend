@@ -1,4 +1,4 @@
-import { Product, Unit, User, Role } from "../types";
+import { Unit, User, Level, BackUp } from "../types";
 import { del, get, post, put } from "./AxiosWrapper";
 import axios, { AxiosResponse } from "axios";
 import { rejects } from "assert";
@@ -18,12 +18,12 @@ async function getObjectList<T>(url: string): Promise<T[]> {
   return list;
 }
 
-async function getObject<T>(url: string, params?: any): Promise<T> {
-  const response = await get<T>(url, params).catch(function (err) {
+async function getObject<T>(url: string, params?: any): Promise<T[]> {
+  const response = await get<T[]>(url, params).catch(function (err) {
     handleError(err);
   });
-  const obj: T = response?.data ?? ({} as unknown as T);
-  return obj;
+  const list: T[] = response?.data ?? new Array<T>();
+  return list;
 }
 
 async function createNewObject<T>(url: string, data: T): Promise<PostResponse> {
@@ -33,6 +33,26 @@ async function createNewObject<T>(url: string, data: T): Promise<PostResponse> {
     error = err.message;
   });
   const postResponse: PostResponse = { response: response, error: error };
+  return postResponse;
+}
+
+async function UpdateObject<T>(url: string, data: T): Promise<PostResponse> {
+  let error = '';
+  const response = await put(url, data).catch(function (err) {
+    handleError(err);
+    error = err.message;
+  });
+  const postResponse: PostResponse = {response: response, error: error}
+  return postResponse
+}
+
+async function deleteObject(url: string, params?: any): Promise<PostResponse> {
+  let error = '';
+  const response = await del(url, params).catch(function (err) {
+    handleError(err);
+    error = err.message;
+  });
+  const postResponse: PostResponse = {response: response, error: error}
   return postResponse;
 }
 
@@ -67,4 +87,33 @@ export async function signUp<T>(data: T): Promise<PostResponse> {
 
 export async function signIn<T>(data: T): Promise<PostResponse> {
   return await createNewObject("/login", data);
+}
+
+
+export async function getUsers() {
+  return await getObjectList<User>('/users');
+}
+
+export async function backUp() {
+  return await getObjectList<BackUp>('/backup');
+}
+
+export async function updateUser<T>(data: T, id: string): Promise<PostResponse> {
+  return await UpdateObject('/users/' + id, data)
+}
+
+export async function getUser(id: String) {
+  return await getObject<User>('/users/' + id);
+}
+
+export async function deleteUser(id: string): Promise<PostResponse> {
+  return await deleteObject('/users', {id: id})
+}
+
+export async function getLevel(id: String) {
+  return await getObject<Level>('/levels/' + id);
+}
+
+export async function getLevels() {
+  return await getObjectList<Level>('/levels');
 }

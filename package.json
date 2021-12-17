@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "file-saver": "^2.0.5",
+    "react-json-to-html": "^0.0.6",
+    "react-json-view": "^1.21.3",
+    "write-json-file": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/file-saver": "^2.0.4"
+  }
+}
