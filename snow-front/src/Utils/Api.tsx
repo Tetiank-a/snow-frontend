@@ -85,6 +85,11 @@ export async function signUp<T>(data: T): Promise<PostResponse> {
   return await createNewObject("/users", data);
 }
 
+export async function addSession<T>(data: T): Promise<PostResponse> {
+  return await createNewObject("/sessions", data);
+}
+
+
 export async function signIn<T>(data: T): Promise<PostResponse> {
   return await createNewObject("/login", data);
 }

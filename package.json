@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "file-saver": "^2.0.5",
+    "react-datepicker": "^4.5.0",
     "react-datetime-picker": "^3.4.3",
     "react-json-to-html": "^0.0.6",
     "react-json-view": "^1.21.3",
@@ -9,6 +10,7 @@
   },
   "devDependencies": {
     "@types/file-saver": "^2.0.4",
+    "@types/react-datepicker": "^4.3.2",
     "@types/react-datetime-picker": "^3.4.1"
   }
 }

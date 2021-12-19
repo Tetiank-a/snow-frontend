@@ -1,18 +1,12 @@
-import { useNavigate, useParams } from 'react-router-dom';
 import '../App.css';
-import EditTaskForm from '../components/EditTaskForm'
+import companyLogo from '../img/mountains.png';
 import i18n from '../services/i18n';
 
-function EditTask() {
-  const { id } = useParams();
-
-  return (
-    <div className='editTask'>
-      <h1>{i18n.t("editTask")}</h1>
-      <EditTaskForm taskId={id as string} />
+const Sessions = () => (
+    <div className='sessions'>
+      <h1>Sessions</h1>
+      <br></br>
     </div>
-  );
-}
+);
 
-
-export default EditTask;
+export default Sessions;

@@ -76,7 +76,7 @@ function SearchSessionForm() {
 
   const validate = () => {
     let isValid = true;
-    if (input.dateTimeFrom > input.dateTimeTo) {
+    if (date1.getTime() > date2.getTime()) {
       isValid = false;
       setErrors({ message: "Invalid Date or Time" });
     }
