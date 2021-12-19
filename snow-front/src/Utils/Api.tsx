@@ -118,6 +118,14 @@ export async function getLevels() {
   return await getObjectList<Level>('/levels');
 }
 
+export async function getLocation(id: String) {
+  return await getObject<Level>('/locations/' + id);
+}
+
+export async function getLocations() {
+  return await getObjectList<Level>('/locations');
+}
+
 export async function getTasks() {
   return await getObjectList<Task>('/tasks');
 }
@@ -136,4 +144,8 @@ export async function getTaskInfo(id: String) {
 
 export async function deleteTask(id: string): Promise<PostResponse> {
   return await deleteObject('/tasks/' + id)
+}
+
+export async function addTask<T>(data: T): Promise<PostResponse> {
+  return await createNewObject("/tasks", data);
 }

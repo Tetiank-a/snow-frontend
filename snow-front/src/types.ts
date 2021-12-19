@@ -40,3 +40,11 @@ export interface Unit {
     username: string;
     text: string;
   }
+
+  export interface UserInf {
+    _id: string;
+    username: string;
+  }
+
+
+
