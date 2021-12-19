@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import { Level, User, Task } from '../types';
 import { getUser, updateUser, getLevels, getLevel, getTask, updateTask } from '../Utils/Api';
+import { useTranslation } from "react-i18next";
 
 class Input {
   name: string = "";
@@ -70,14 +71,14 @@ function EditTaskForm(props: {taskId: string}) {
       navigate('/tasks')
     }
   }
-      
+  const { t } = useTranslation();
   return (
     <Form onSubmit={handleSubmit} action="/tasks">
       <div className="text-danger">
         <h6>{error}</h6>
       </div>
       <Form.Group className="mb-3" controlId="formBasicName">
-        <Form.Label>Name</Form.Label>
+        <Form.Label>{t("Name")}</Form.Label>
         <Form.Control
           id="username"
           name="username"
@@ -85,11 +86,11 @@ function EditTaskForm(props: {taskId: string}) {
           onChange={e => {setValues({...input, name: e.target.value});}}
           required
           type="text"
-          placeholder="Enter name"
+          placeholder={t("Enter name")}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicSurname">
-        <Form.Label>Link</Form.Label>
+        <Form.Label>{t("Link")}</Form.Label>
         <Form.Control
           id="link"
           name="link"
@@ -97,18 +98,18 @@ function EditTaskForm(props: {taskId: string}) {
           onChange={e => {setValues({...input, link: e.target.value});}}
           required
           type="text"
-          placeholder="Enter link"
+          placeholder={t("Enter link")}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicUnit">
-        <Form.Label>Level</Form.Label>
+        <Form.Label>{t("Level")}</Form.Label>
         <Form.Select
           id="levels"
           name="levels"
           value={input.level._id}
           onChange={e => {setValues({...input, level: {'_id' : e.target.value, 'name' : getLevelName(e.target.value, levels)}})}}
           required
-          placeholder="Enter unit"
+          placeholder={t("Enter level")}
         >
         {levels.map((level) =>
           <option selected={input.level == {'_id': level._id, 'name': level.name}} value={level._id} id={level._id} key={level.name}>{level.name}</option>
@@ -116,7 +117,7 @@ function EditTaskForm(props: {taskId: string}) {
         </Form.Select>
       </Form.Group>
       <Form.Group className="mb-4" controlId="formBasicText">
-        <Form.Label>Text</Form.Label>
+        <Form.Label>{t("Text")}</Form.Label>
         <Form.Control
           id="text"
           name="text"
@@ -124,11 +125,11 @@ function EditTaskForm(props: {taskId: string}) {
           onChange={e => {setValues({...input, text: e.target.value});}}
           required
           type="text"
-          placeholder="Enter text"
+          placeholder={t("Enter text")}
         />
       </Form.Group>
       <Button variant="primary" type="submit">
-        Submit
+        {t("Submit")}
       </Button>      
     </Form>
   );

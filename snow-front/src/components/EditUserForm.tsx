@@ -3,6 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import { Level, User } from '../types';
 import { getUser, updateUser, getLevels, getLevel } from '../Utils/Api';
+import { useTranslation } from "react-i18next";
 
 class Input {
   username: string = "";
@@ -67,14 +68,14 @@ function EditUserForm(props: {userId: string}) {
       navigate('/users')
     }
   }
-      
+  const { t } = useTranslation();
   return (
     <Form onSubmit={handleSubmit} action="/users">
       <div className="text-danger">
         <h6>{error}</h6>
       </div>
       <Form.Group className="mb-3" controlId="formBasicName">
-        <Form.Label>Username</Form.Label>
+        <Form.Label>{t("Name")}</Form.Label>
         <Form.Control
           id="username"
           name="username"
@@ -82,11 +83,11 @@ function EditUserForm(props: {userId: string}) {
           onChange={e => {setValues({...input, username: e.target.value});}}
           required
           type="text"
-          placeholder="Enter username"
+          placeholder={t("Enter name")}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicSurname">
-        <Form.Label>Email</Form.Label>
+        <Form.Label>{t("Email")}</Form.Label>
         <Form.Control
           id="email"
           name="email"
@@ -94,18 +95,18 @@ function EditUserForm(props: {userId: string}) {
           onChange={e => {setValues({...input, email: e.target.value});}}
           required
           type="text"
-          placeholder="Enter email"
+          placeholder={t("Enter email")}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicUnit">
-        <Form.Label>Level</Form.Label>
+        <Form.Label>{t("Level")}</Form.Label>
         <Form.Select
           id="levels"
           name="levels"
           value={input.level._id}
           onChange={e => {setValues({...input, level: {'_id' : e.target.value, 'name' : getLevelName(e.target.value, levels)}})}}
           required
-          placeholder="Enter unit"
+          placeholder={t("Enter level")}
         >
         {levels.map((level) =>
           <option selected={input.level == {'_id': level._id, 'name': level.name}} value={level._id} id={level._id} key={level.name}>{level.name}</option>
@@ -113,7 +114,7 @@ function EditUserForm(props: {userId: string}) {
         </Form.Select>
       </Form.Group>
       <Button variant="primary" type="submit">
-        Submit
+        {t("Submit")}
       </Button>      
     </Form>
   );

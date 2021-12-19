@@ -5,6 +5,7 @@ import { Level, User, Task, TaskInf } from '../types';
 import { getUser, updateUser, getLevels, getLevel, getTask, updateTask, getTaskInfo } from '../Utils/Api';
 import ReactPlayer from "react-player"
 import YoutubeEmbed from './YoutubeEmbed';
+import { useTranslation } from "react-i18next";
 
 class Input {
   name: string = "";
@@ -61,17 +62,17 @@ function TaskInfoForm(props: {taskId: string}) {
   }, [])
      
   
-      
+  const { t } = useTranslation();
   return (
     <Form>
       <div className="text-danger">
         <h6>{error}</h6>
       </div>
       <Form.Group className="mb-3" controlId="formBasicName">
-        <Form.Label>Task creator : {input.username}</Form.Label>
+        <Form.Label>{t("Task creator")} : {input.username}</Form.Label>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicSurname">
-        <Form.Label>Level : {input.level.name}</Form.Label>
+        <Form.Label>{t("Level")} : {input.level.name}</Form.Label>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicUnit">
       <div className="App">

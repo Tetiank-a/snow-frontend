@@ -1,6 +1,7 @@
 import '../App.css';
 import { useEffect } from 'react';
 import { removeUserSession } from '../Utils/Common';
+import i18n from '../services/i18n';
 
 
 function Logout() {

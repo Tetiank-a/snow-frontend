@@ -6,8 +6,12 @@ import { Link } from "react-router-dom";
 import { PencilFill, TrashFill } from 'react-bootstrap-icons';
 import { User, Level } from '../types';
 import { deleteUser, getUsers, getLevel } from '../Utils/Api';
+import { useTranslation, withTranslation, WithTranslation } from "react-i18next";
 
-class UsersForm extends React.Component<{}, {users: User[]}> {
+interface IProps extends WithTranslation {
+    prop: any;
+  }
+class UsersForm extends React.Component<IProps, {users: User[]}> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -42,7 +46,7 @@ class UsersForm extends React.Component<{}, {users: User[]}> {
                             <Row>
                                 <Col>
                                     <Link to={`edit/${p._id}`}>
-                                        <PencilFill />
+                                        <PencilFill color="lime"/>
                                     </Link>
                                     <Col>
                                     <TrashFill color="red" onClick={() => {this.onClickRemove(p._id)}} />
@@ -56,7 +60,7 @@ class UsersForm extends React.Component<{}, {users: User[]}> {
                     <Row>
                         <Col>
                             <div className="p-2 m-1 border rounded">
-                                Email: {p.email}
+                            {this.props.t('Email')}: {p.email}
                             </div>
                         </Col>
                     </Row>
@@ -64,7 +68,7 @@ class UsersForm extends React.Component<{}, {users: User[]}> {
                         <Col>
                         
                                 <div className="p-2 m-1 border rounded">
-                                    Level: {p.level.name}
+                                {this.props.t('Level')}: {p.level.name}
                                 </div>
                         </Col>
                     </Row>
@@ -96,4 +100,4 @@ function NoElements(props: {text: string}) {
     );
 }
 
-export default UsersForm;
+export default withTranslation()(UsersForm);

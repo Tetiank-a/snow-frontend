@@ -6,8 +6,13 @@ import { Link } from "react-router-dom";
 import { PencilFill, TrashFill } from 'react-bootstrap-icons';
 import { User, Level, Task } from '../types';
 import { deleteUser, getUsers, getLevel, getTasks, deleteTask } from '../Utils/Api';
+import { useTranslation, withTranslation, WithTranslation } from "react-i18next";
 
-class TasksForm extends React.Component<{}, {tasks: Task[]}> {
+interface IProps extends WithTranslation {
+    prop: any;
+  }
+
+class TasksForm extends React.Component<IProps, {tasks: Task[]}> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -66,7 +71,7 @@ class TasksForm extends React.Component<{}, {tasks: Task[]}> {
                         <Col>
                         <Link to={`levels/${p.level}`} style={{ textDecoration: 'none' }}>
                                 <div className="p-2 m-1 border rounded">
-                                    Level: {p.level.name}
+                                {this.props.t('Level')}: {p.level.name}
                                 </div>
                             </Link>
                         </Col>
@@ -99,4 +104,4 @@ function NoElements(props: {text: string}) {
     );
 }
 
-export default TasksForm;
+export default withTranslation()(TasksForm);

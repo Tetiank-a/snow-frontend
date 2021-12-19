@@ -13,7 +13,7 @@ code {
 
 .header {
   min-height:50px;
-  background: -webkit-linear-gradient(#a685b8, #c2adce);
+  background: -webkit-linear-gradient(#79717e, #79717e);
   background-blend-mode: lighten;
   font-family: "Trirong", serif;
   color: #698ab8;
@@ -28,18 +28,33 @@ code {
 .footer {
   min-height: 50px;
   padding: 20px;
-  background-color: #e7e9f3;
+  background-color: #79717e;
   background-blend-mode:soft-light;
   font-family: "Audiowide", sans-serif;
-  color: #698ab8;
+  color: #1eff00;
 }
 
 .h1 {
-  color: white;
+  color: white !important;
+}
+
+.navbar-brand a{
+  color: azure;
 }
 
 .navbar a{
   color: #03f0e4;
+  text-decoration: none;
+  font-family: "Audiowide", sans-serif;
+  margin: 20px;
+}
+
+.navbar-light .navbar-brand {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.navbar a:hover{
+  color: #0bf003;
   text-decoration: none;
   font-family: "Audiowide", sans-serif;
   margin: 20px;
@@ -52,7 +67,7 @@ code {
 .app, .app-page-not-found{ 
   min-height: 100vh;
   margin: 10; 
-  background-color: #e7e9f3;
+  background-color: #79717e;
   display: grid;
   font-size: 15pt;
   grid-template-rows: auto 1fr auto;
@@ -69,10 +84,46 @@ code {
   font-size: 15px;
   height: 200px;
   width: 400px;
+  background-color: #9c91a1;
+  color:black;
+  font-family: "Consolas", serif !important;
+  border-color: chartreuse !important;
+  border-radius: 20px !important;
+}
+
+.card-body a{
+  color:rgb(116, 175, 175);
+}
+
+.card {
+  background-color: #9c91a1 !important;
+  color:black !important;
+  border-color: cyan !important;
+  border-radius: 20px !important;
+}
+
+.card a{
+  background-color: #9c91a1 !important;
+  color:black !important;
+}
+
+.form-control, .form-select {
+  background-color: #9c91a1 !important;
+  color:black !important;
+}
+
+.form-control a{
+  background-color: #9c91a1 !important;
+  color:black !important;
 }
 
 .mh-10 {
   text-align: center;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
+.lang{
+  font-family: "Consolas", serif !important;
+}
+
 

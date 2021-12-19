@@ -7,6 +7,7 @@ import { PencilFill } from "react-bootstrap-icons";
 import { User, Level, BackUp } from "../types";
 import { deleteUser, getUsers, getLevel, backUp } from "../Utils/Api";
 import Users from "../pages/Users";
+import { useTranslation } from "react-i18next";
 
 class BackUpForm extends React.Component<{}, { backup: BackUp[] }> {
   constructor(props: any) {
@@ -38,6 +39,7 @@ function getLink(list: string): string {
 }
 
 function NoElements(props: { text: string }) {
+    const { t } = useTranslation();
   return (
     <>
       <div className="mh-10">
