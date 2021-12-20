@@ -2,7 +2,7 @@ import logo from "../img/icon.png";
 import "../App.css";
 import { NavLink } from "react-router-dom";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
-import { isAuthorized } from "../Utils/Common";
+import { isAdmin, isAuthorized, isInstructor } from "../Utils/Common";
 import { useTranslation } from "react-i18next";
 import i18n from "../services/i18n";
 
@@ -14,6 +14,8 @@ const handleLangChange = (evt: { target: { value: any; }; }) => {
 function Header() {
   const { t } = useTranslation();
   const isLoggedIn: boolean = isAuthorized();
+  const isAdminRole: boolean = isAdmin();
+  const isInstructorRole: boolean = isInstructor();
   return (
     <div className="header">
       <Navbar collapseOnSelect expand="lg" variant="light">
@@ -29,12 +31,28 @@ function Header() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              {isLoggedIn && (
+              {isLoggedIn && isAdminRole && (
                 <div>
                   <NavLink to="/users">{t("Users")}</NavLink>
                   <NavLink to="/tasks">{t("Tasks")}</NavLink>
-                  <NavLink to="/sessions">{t("Sessions")}</NavLink>
+                  <NavLink to="/sessions">{t("Find sessions")}</NavLink>
+                  <NavLink to="/sessions/my">{t("My sessions")}</NavLink>
                   <NavLink to="/backup">{t("Settings")}</NavLink>
+                </div>
+              )}
+              {isLoggedIn && isInstructorRole && (
+                <div>
+                  <NavLink to="/tasks">{t("Tasks")}</NavLink>
+                  <NavLink to="/sessions/my">{t("My sessions")}</NavLink>
+                  <NavLink to="/sessions/create">{t("Create session")}</NavLink>
+                  <NavLink to="/sessions">{t("Find session")}</NavLink>
+                </div>
+              )}
+              {isLoggedIn && !isInstructorRole && !isAdminRole && (
+                <div>
+                  <NavLink to="/tasks">{t("Tasks")}</NavLink>
+                  <NavLink to="/sessions/my">{t("My sessions")}</NavLink>
+                  <NavLink to="/sessions">{t("Find session")}</NavLink>
                 </div>
               )}
             </Nav>

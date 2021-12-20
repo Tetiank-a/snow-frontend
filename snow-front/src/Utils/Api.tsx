@@ -1,4 +1,4 @@
-import { Unit, User, Level, BackUp, Task, TaskInf } from "../types";
+import { Unit, User, Level, BackUp, Task, TaskInf, Session } from "../types";
 import { del, get, post, put } from "./AxiosWrapper";
 import axios, { AxiosResponse } from "axios";
 import { rejects } from "assert";
@@ -89,6 +89,17 @@ export async function addSession<T>(data: T): Promise<PostResponse> {
   return await createNewObject("/sessions", data);
 }
 
+export async function getSessions() {
+  return await getObjectList<Session>('/sessions');
+}
+
+export async function deleteSession(id: string): Promise<PostResponse> {
+  return await deleteObject('/sessions/' + id)
+}
+
+export async function updateSession<T>(data: T, id: string): Promise<PostResponse> {
+  return await UpdateObject('/sessions/' + id, data)
+}
 
 export async function signIn<T>(data: T): Promise<PostResponse> {
   return await createNewObject("/login", data);

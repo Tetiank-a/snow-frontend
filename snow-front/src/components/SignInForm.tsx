@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { signIn } from "../Utils/Api";
+import { getUser, signIn } from "../Utils/Api";
 import { setUserSession } from "../Utils/Common";
 import { useTranslation } from "react-i18next";
 
@@ -40,9 +40,10 @@ function SignInForm() {
       } else {
         const token = result.response?.data['token'] ?? "";
         const user = result.response?.data['_id'] ?? "";
-        setUserSession(token, user);
+        const role = result.response?.data['role'] ?? "";
+        setUserSession(token, user, role);
 
-        if (user && token) {
+        if (user && token && role) {
           window.location.href = "/";
         }
       }

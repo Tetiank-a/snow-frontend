@@ -13,7 +13,7 @@ import { useTranslation } from "react-i18next";
 import { Level, User, UserInf } from "../types";
 import { getUserId } from "../Utils/Common";
 import DateTimePicker from "react-datetime-picker";
-
+let err = "Number of added sessions: ";
 class Input {
   instructor_id: string = "";
   location: Level = { _id: "", name: "" };
@@ -50,11 +50,9 @@ function CreateSessionForm() {
     async function fetchApi() {
       const user: User = (await getUser(userId))[0];
       const levels: Level[] = await getLocations();
-      console.log(levels);
+
       setLevels(levels);
-      console.log(levels);
       if (user._id != userId) {
-        console.log(user._id + "\n" + userId);
         setError("Something went wrong");
       } else {
         setValues({
@@ -76,13 +74,26 @@ function CreateSessionForm() {
       const data: Input = input as Input;
       console.log(data);
       const result = await addSession(data); // TODO------------------------------------------------------------
+      err = err + " + ";
       const error = result?.error ?? "";
       if (error) {
         setError(error);
-      } else {
-        // navigate('/sessions/filtered')
       }
-      setValues(new Input());
+      const user: User = (await getUser(userId))[0];
+      const levels: Level[] = await getLocations();
+      console.log(levels);
+      setLevels(levels);
+      console.log(levels);
+      if (user._id != userId) {
+        setError("Something went wrong");
+      } else {
+        setValues({
+          location: { _id: levels[0]["_id"], name: levels[0]["name"] },
+          dtstart: new Date(),
+          dtfinish: new Date(),
+          instructor_id: userId,
+        });
+      }
     }
   };
 
@@ -98,7 +109,7 @@ function CreateSessionForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <div className="text-danger">
-        <h6>{errors.message}</h6>
+        <h6>{err}</h6>
       </div>
       <Form.Group className="mb-3" controlId="formBasicUnit">
         <Form.Label>{t("Location")}</Form.Label>

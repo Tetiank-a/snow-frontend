@@ -17,6 +17,7 @@ import { BadRequest, Unauthorized, AccessDenied, PageNotFound } from './pages/Er
 import SearchSession from './pages/SearchSession';
 import Sessions from './pages/Sessions';
 import CreateSession from './pages/CreateSession';
+import MySessions from './pages/MySessions';
 
 const App = () => (
   <div className="app">
@@ -38,6 +39,7 @@ const Main = () => (
       <Route path='/tasks' element={<Tasks />}/>
       <Route path='/sessions' element={<SearchSession />}/>
       <Route path='/sessions/filtered' element={<Sessions />}/>
+      <Route path='/sessions/my' element={<MySessions />}/>
       <Route path='/sessions/create' element={<CreateSession />}/>
       <Route path='/users/edit/:id' element={<EditUser/>}/>
       <Route path='/tasks/edit/:id' element={<EditTask/>}/>

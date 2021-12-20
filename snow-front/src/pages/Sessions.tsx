@@ -1,12 +1,17 @@
+import { useNavigate, useParams } from 'react-router-dom';
 import '../App.css';
-import companyLogo from '../img/mountains.png';
+import SessionsForm from '../components/SessionsForm'
 import i18n from '../services/i18n';
 
-const Sessions = () => (
-    <div className='sessions'>
-      <h1>Sessions</h1>
-      <br></br>
-    </div>
-);
+function Session() {
 
-export default Sessions;
+  return (
+    <div className='Session'>
+      <h1>{i18n.t("Sessions")}</h1>
+      <SessionsForm />
+    </div>
+  );
+}
+
+
+export default Session;
