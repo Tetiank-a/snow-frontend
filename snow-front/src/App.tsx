@@ -39,7 +39,7 @@ const Main = () => (
       <Route path='/users' element={<Users />}/>
       <Route path='/tasks' element={<Tasks />}/>
       <Route path='/sessions' element={<SearchSession />}/>
-      <Route path='/sessions/filtered' element={<Sessions />}/>
+      <Route path='/sessions/filter/:id' element={<Sessions />}/>
       <Route path='/sessions/my' element={<MySessions />}/>
       <Route path='/sessions/create' element={<CreateSession />}/>
       <Route path='/users/edit/:id' element={<EditUser/>}/>

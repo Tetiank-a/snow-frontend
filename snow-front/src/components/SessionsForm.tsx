@@ -29,6 +29,8 @@ interface IProps extends WithTranslation {
 }
 class SessionForm extends React.Component<IProps, { sessions: Session[] }> {
   constructor(props: any) {
+      console.log("props _------------>");
+      console.log(props);
     super(props);
     this.state = {
       sessions: new Array<Session>(),
@@ -37,8 +39,8 @@ class SessionForm extends React.Component<IProps, { sessions: Session[] }> {
   }
 
   async componentDidMount() {
+
     const sessions = await getSessions();
-    console.log(sessions);
     for (let i = 0; i < sessions.length; ++i) {
       if (
         sessions[i].user._id != "-"

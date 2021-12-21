@@ -1,7 +1,7 @@
 import { useLayoutEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { getUser, signUp, getLevels, addTask, getLocations } from "../Utils/Api";
+import { getUser, signUp, getLevels, addTask, getLocations, addQuery } from "../Utils/Api";
 import { useTranslation } from "react-i18next";
 import { Level, User, UserInf } from "../types";
 import { getUserId } from "../Utils/Common";
@@ -9,8 +9,8 @@ import DateTimePicker from 'react-datetime-picker';
 
 class Input {
   location: Level = { _id: "", name: "" };
-  dateTimeFrom: Date = new Date();
-  dateTimeTo: Date = new Date();
+  dtstart: Date = new Date();
+  dtfinish: Date = new Date();
 }
 
 class Error {
@@ -49,8 +49,8 @@ function SearchSessionForm() {
       
         setValues({
           location: {"_id": levels[0]["_id"], "name": levels[0]["name"]},
-          dateTimeFrom: new Date(),
-          dateTimeTo: new Date()
+          dtstart: new Date(),
+          dtfinish: new Date()
         });
     }
     fetchApi();
@@ -59,16 +59,18 @@ function SearchSessionForm() {
     event.preventDefault();
 
     if (validate()) {
-    input.dateTimeFrom = date1;
-    input.dateTimeTo = date2;
+    input.dtstart = date1;
+    input.dtfinish = date2;
       const data: Input = input as Input;
       console.log(data);
-      //const result = await addTask(data); // TODO------------------------------------------------------------
+      const result = await addQuery(data); // TODO------------------------------------------------------------
+      console.log(result.response?.data['_id']);
+      let query_id = result.response?.data['_id'];
       //const error = result?.error ?? '';
     //if (error) {
     //  setError(error)
     //} else {
-      navigate(`sessions/filter/${data}`);
+      navigate(`filter/${query_id}`);
    // }
       setValues(new Input());
     }

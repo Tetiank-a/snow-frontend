@@ -89,6 +89,13 @@ export async function addSession<T>(data: T): Promise<PostResponse> {
   return await createNewObject("/sessions", data);
 }
 
+export async function addQuery<T>(data: T): Promise<PostResponse> {
+  return await createNewObject("/query", data);
+}
+
+export async function getQuery(id: String) {
+  return await getObject<User>('/users/' + id);
+}
 export async function getSessions() {
   return await getObjectList<Session>('/sessions');
 }
