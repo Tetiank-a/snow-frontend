@@ -80,9 +80,25 @@ function FunctionalForm(props: { queryId: string }) {
       const query: Query = (await getQuery(queryId))[0];
       const sessionsx = await getSessions();
       let sessions2 = new Array<Session>();
+      let d2l = new Date(query.dtstart);
+      let d2r = new Date(query.dtfinish);
+      console.log(d2l);
+      console.log(d2r);
       for (let i = 0; i < sessionsx.length; ++i) {
-        console.log(sessionsx[i].user._id);
-        if (sessionsx[i].user._id == "-" && sessionsx[i].location._id == query.location._id) {
+        let d1l = new Date(sessionsx[i].dtstart);
+        let d1r = new Date(sessionsx[i].dtfinish);
+        console.log(i + "-----------");
+        console.log(d1l);
+        console.log(d2l);
+        console.log("+");
+        console.log(d2r);
+        console.log(d1r);
+        if (
+          sessionsx[i].user._id == "-" &&
+          sessionsx[i].location._id == query.location._id &&
+          d1l.getTime() >= d2l.getTime() &&
+          d1r.getTime() <= d2r.getTime()
+        ) {
           sessions2.push(sessionsx[i]);
         }
       }
@@ -104,9 +120,13 @@ function FunctionalForm(props: { queryId: string }) {
   const tbody = input.sessions.map((s, i) => (
     <tr>
       <td>{i + 1}</td>
-      <td>{input.sessions[getIndexById(input.sessions, s._id)]?.location.name ?? ""}</td>
       <td>
-        {input.sessions[getIndexById(input.sessions, s._id)]?.instructor.username ?? ""}
+        {input.sessions[getIndexById(input.sessions, s._id)]?.location.name ??
+          ""}
+      </td>
+      <td>
+        {input.sessions[getIndexById(input.sessions, s._id)]?.instructor
+          .username ?? ""}
       </td>
       <td>{new Date(s.dtstart).toLocaleString()}</td>
       <td>{new Date(s.dtfinish).toLocaleString()}</td>
