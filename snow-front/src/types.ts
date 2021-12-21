@@ -58,3 +58,11 @@ export interface Session {
   dtstart: Date;
   dtfinish: Date;
 }
+
+
+export interface Query {
+  _id: string;
+  location: Level;
+  dtstart: Date;
+  dtfinish: Date;
+}

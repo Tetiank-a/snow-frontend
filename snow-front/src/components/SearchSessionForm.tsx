@@ -7,6 +7,11 @@ import { Level, User, UserInf } from "../types";
 import { getUserId } from "../Utils/Common";
 import DateTimePicker from 'react-datetime-picker';
 
+let ID = "";
+
+function get_id() {
+  return ID;
+}
 class Input {
   location: Level = { _id: "", name: "" };
   dtstart: Date = new Date();
@@ -66,6 +71,7 @@ function SearchSessionForm() {
       const result = await addQuery(data); // TODO------------------------------------------------------------
       console.log(result.response?.data['_id']);
       let query_id = result.response?.data['_id'];
+      ID = query_id;
       //const error = result?.error ?? '';
     //if (error) {
     //  setError(error)

@@ -12,7 +12,9 @@ import { Idable, Level, Session } from "../types";
 import { deleteSession, getSessions, updateSession } from "../Utils/Api";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { getUserId, isAdmin, isInstructor } from "../Utils/Common";
+import get_id from "./SearchSessionForm";
 const userId = getUserId();
+let query_id = "";
 class Input {
   user_id: string = "";
 }
@@ -25,12 +27,10 @@ class Filter {
 
   let filter = new Filter();
 interface IProps extends WithTranslation {
-  prop: any;
+  prop: string;
 }
 class SessionForm extends React.Component<IProps, { sessions: Session[] }> {
   constructor(props: any) {
-      console.log("props _------------>");
-      console.log(props);
     super(props);
     this.state = {
       sessions: new Array<Session>(),
@@ -39,7 +39,9 @@ class SessionForm extends React.Component<IProps, { sessions: Session[] }> {
   }
 
   async componentDidMount() {
-
+    //let {id} = this.props.match.params;
+    console.log(this.props);
+    //console.log(get_id);
     const sessions = await getSessions();
     for (let i = 0; i < sessions.length; ++i) {
       if (

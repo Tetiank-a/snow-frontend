@@ -1,4 +1,4 @@
-import { Unit, User, Level, BackUp, Task, TaskInf, Session } from "../types";
+import { Unit, User, Level, BackUp, Task, TaskInf, Session, Query } from "../types";
 import { del, get, post, put } from "./AxiosWrapper";
 import axios, { AxiosResponse } from "axios";
 import { rejects } from "assert";
@@ -22,6 +22,7 @@ async function getObject<T>(url: string, params?: any): Promise<T[]> {
   const response = await get<T[]>(url, params).catch(function (err) {
     handleError(err);
   });
+  console.log(response);
   const list: T[] = response?.data ?? new Array<T>();
   return list;
 }
@@ -94,7 +95,7 @@ export async function addQuery<T>(data: T): Promise<PostResponse> {
 }
 
 export async function getQuery(id: String) {
-  return await getObject<User>('/users/' + id);
+  return await getObject<Query>('/query/' + id);
 }
 export async function getSessions() {
   return await getObjectList<Session>('/sessions');
