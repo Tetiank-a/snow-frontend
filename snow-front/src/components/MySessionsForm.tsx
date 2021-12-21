@@ -31,10 +31,6 @@ class SessionForm extends React.Component<IProps, { sessions: Session[] }> {
 
   async componentDidMount() {
     const sessions = await getSessions();
-    console.log(sessions);
-    console.log("----------");
-    console.log(userId);
-    console.log(sessions.length);
     let sessions2 = new Array<Session>();
     for (let i = 0; i < sessions.length; ++i) {
       if (
