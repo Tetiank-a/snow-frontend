@@ -68,7 +68,7 @@ function SearchSessionForm() {
     //if (error) {
     //  setError(error)
     //} else {
-      navigate('/sessions/filtered')
+      navigate(`sessions/filter/${data}`);
    // }
       setValues(new Input());
     }

@@ -8,7 +8,7 @@ import {
   StopBtn,
   TrashFill,
 } from "react-bootstrap-icons";
-import { Idable, Session } from "../types";
+import { Idable, Level, Session } from "../types";
 import { deleteSession, getSessions, updateSession } from "../Utils/Api";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { getUserId, isAdmin, isInstructor } from "../Utils/Common";
@@ -17,6 +17,13 @@ class Input {
   user_id: string = "";
 }
 
+class Filter {
+    location: Level = { _id: "", name: "" };
+    dateTimeFrom: Date = new Date();
+    dateTimeTo: Date = new Date();
+  }
+
+  let filter = new Filter();
 interface IProps extends WithTranslation {
   prop: any;
 }

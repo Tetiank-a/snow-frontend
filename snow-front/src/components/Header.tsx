@@ -37,6 +37,7 @@ function Header() {
                   <NavLink to="/tasks">{t("Tasks")}</NavLink>
                   <NavLink to="/sessions">{t("Find sessions")}</NavLink>
                   <NavLink to="/sessions/my">{t("My sessions")}</NavLink>
+                  <NavLink to="/statistics">{t("Statistics")}</NavLink>
                   <NavLink to="/backup">{t("Settings")}</NavLink>
                 </div>
               )}

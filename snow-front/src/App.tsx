@@ -18,6 +18,7 @@ import SearchSession from './pages/SearchSession';
 import Sessions from './pages/Sessions';
 import CreateSession from './pages/CreateSession';
 import MySessions from './pages/MySessions';
+import Statistics from './pages/Statistics';
 
 const App = () => (
   <div className="app">
@@ -44,6 +45,7 @@ const Main = () => (
       <Route path='/users/edit/:id' element={<EditUser/>}/>
       <Route path='/tasks/edit/:id' element={<EditTask/>}/>
       <Route path='/tasks/info/:id' element={<TaskInfo/>}/>
+      <Route path='/statistics' element={<Statistics />}/>
       <Route path='/403' element={<AccessDenied />} />
       <Route path='/401' element={<Unauthorized />} />
       <Route path='/400' element={<BadRequest />} />
