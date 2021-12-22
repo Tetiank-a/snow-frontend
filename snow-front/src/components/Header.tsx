@@ -46,7 +46,7 @@ function Header() {
                   <NavLink to="/tasks">{t("Tasks")}</NavLink>
                   <NavLink to="/sessions/my">{t("My sessions")}</NavLink>
                   <NavLink to="/sessions/create">{t("Create session")}</NavLink>
-                  <NavLink to="/sessions">{t("Find session")}</NavLink>
+                  <NavLink to="/sessions">{t("Find sessions")}</NavLink>
                 </div>
               )}
               {isLoggedIn && !isInstructorRole && !isAdminRole && (

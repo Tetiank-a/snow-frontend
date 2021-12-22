@@ -70,8 +70,17 @@ const resources = {
   },
   ua: {
     translation: {
+      "Location" : "Локація",
+      "Student" : "Учень",
+      "Instructor": "Інструктор",
+      "Time from" : "Час початку",
+      "Time to" : "Час закінчення",
+      "Find session": "Знайти тренування",
+      "My sessions": "Мої тренування",
         "Task creator": "Урок створив",
       "Edit User": "Редагування користувача",
+      "Create session": "Створити тренування",
+      "Find sessions" : "Знайти тренування",
       "Tasks": "Уроки",
       "Sessions": "Тренування",
       "Settings": "Налаштування",

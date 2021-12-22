@@ -97,7 +97,7 @@ function SignUpForm() {
         <h6>{errors.message}</h6>
       </div>
       <Form.Group className="mb-3" controlId="formBasicName">
-        <Form.Label>Name</Form.Label>
+        <Form.Label>{t("Name")}</Form.Label>
         <Form.Control
           id="username"
           name="username"
@@ -107,12 +107,12 @@ function SignUpForm() {
           }}
           required
           type="text"
-          placeholder="Enter name"
+          placeholder={t("Enter name")}
         />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
+        <Form.Label>{t("Email")}</Form.Label>
         <Form.Control
           id="email"
           name="email"
@@ -122,11 +122,8 @@ function SignUpForm() {
           }}
           required
           type="email"
-          placeholder="Enter email"
+          placeholder={t("Enter email")}
         />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicUnit">
         <Form.Label>{t("Level")}</Form.Label>
@@ -159,7 +156,7 @@ function SignUpForm() {
         </Form.Select>
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
+        <Form.Label>{t("Password")}</Form.Label>
         <Form.Control
           id="password"
           name="password"
@@ -169,11 +166,11 @@ function SignUpForm() {
           }}
           required
           type="password"
-          placeholder="Enter password"
+          placeholder={t("Enter password")}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
-        <Form.Label>Confirm password</Form.Label>
+        <Form.Label>{t("Confirm password")}</Form.Label>
         <Form.Control
           id="confirm_password"
           name="confirm_password"
@@ -183,7 +180,7 @@ function SignUpForm() {
           }}
           required
           type="password"
-          placeholder="Enter password again"
+          placeholder={t("Enter password again")}
         />
         <div className="text-danger">{errors.confirm_password}</div>
       </Form.Group>
@@ -196,11 +193,11 @@ function SignUpForm() {
           required
           name="agreement"
           type="checkbox"
-          label="I agree with terms and conditions"
+          label={t("I agree with terms and conditions")}
         />
       </Form.Group>
       <Button variant="primary" type="submit">
-        Submit
+      {t("Submit")}
       </Button>
     </Form>
   );

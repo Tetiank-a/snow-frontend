@@ -71,7 +71,7 @@ class TasksForm extends React.Component<IProps, { tasks: Task[] }> {
                       </td>
                       <Col>
                         <td>
-                          {isInstructorRole && (
+                          {(isInstructorRole || isAdminRole) && (
                             <>
                               <TrashFill
                                 color="red"
